@@ -1,0 +1,30 @@
+.postBox {
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 1%;
+    width: 60%;
+    height: auto;
+    margin-top: 3%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.postBox-title {
+    padding: 15px;
+    font-size: 30px;
+    font-weight: bold;
+    padding-bottom: 0px;
+}
+
+.postBox-meta {
+    padding-left: 15px;
+    font-size: medium;
+    padding-bottom: 30px;
+}
+
+.postBox-img {
+    display: block;
+    margin: auto;
+    width: 100%;
+}

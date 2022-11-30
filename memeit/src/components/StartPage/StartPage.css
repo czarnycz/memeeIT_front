@@ -1,0 +1,16 @@
+.start-page-container {
+    display: flex;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: gainsboro;
+    font-family: 'Courier New', Courier, monospace;
+    padding-bottom: 100px;
+  }
+
+  .start-page-container h1 {
+    font-size: 2rem;
+    padding-top: 3%;
+  }
+  
