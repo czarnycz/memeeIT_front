@@ -10,6 +10,7 @@ interface NewPostContext {
 export const NewPostContext = createContext<NewPostContext>({
     post: {
         title: "",
+        votes: 0,
     },
     postModifier: (value: Post) => {
 
@@ -19,6 +20,7 @@ export const NewPostContext = createContext<NewPostContext>({
 export const PostProvider = (props: React.PropsWithChildren) => {
     const [post, setPost] = useState<Post>({
         title: "",
+        votes: 0,
     });
     const postModifier = (value: Post) => {
         setPost(value)

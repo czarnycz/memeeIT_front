@@ -36,7 +36,7 @@ function App() {
                   <Route path='/register' element={<RegisterForm />}></Route>
                   <Route path='/login' element={<Login />}></Route>
                   <Route path='/addPost' element={<NewPost />}></Route>
-                  
+                  {/* <Route path='/addComment' element={<NewComment/>}></Route> */}
                   <Route
                     path="/login/redirect"
                     element={<RedirectHandler />}

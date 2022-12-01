@@ -5,6 +5,8 @@ import { Button, FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
 import { AuthenticationApi } from "../../api/AuthenticationApi";
 import "./NewPost.css";
 import { NewPostContext } from "../../hooks/NewPostContext";
+import { PostApi } from "../../api/PostApi";
+import { stringify } from "querystring";
 
 export const NewPost = () => {
 
@@ -12,19 +14,22 @@ export const NewPost = () => {
     const navigation = useNavigate();
     const[title,setTitle] = useState<string>("")
 
-    // const[images, setImages] = useState([]);
-    // const[imageUrls, setImageUrls] = useState([]);
+    const[images, setImages] = useState<File | null>(null);
+    const[imageUrls, setImageUrls] = useState<string>("");
 
-    // useEffect(() => {
-    //     if(images.length < 1) return;
-    //     const newImageUrls = [];
-    //     images.forEach(image => newImageUrls.push(URL.createObjectURL(image)));
-    //     setImageUrls(newImageUrls);
-    // }, [images]);
+    useEffect(() => {
+        if(!images) return;
+        setImageUrls(URL.createObjectURL(images));
+    }, [images]);
 
-    // function onImageChange(e)   {
-    //     setImages([...e.target.files]);
-    // }
+    function onImageChange(e:React.ChangeEvent<HTMLInputElement>)   {
+       if(!e.currentTarget.files) {
+        return;
+       }
+      setImages(e.currentTarget.files[0])
+    }
+
+
 
 
    
@@ -36,8 +41,8 @@ export const NewPost = () => {
     
 
     const handleSubmit = async () =>{
-       
-        await AuthenticationApi.savePost();
+       if(!images) return;
+        await PostApi.savePost({title:title, fileImage:{name:images.name, type:images.type, filePath:images.}});
            navigation("/posts");
         }
 
@@ -49,8 +54,8 @@ export const NewPost = () => {
             <Input type='text' value={title} onChange={onTitleChanged}></Input>
             <FormLabel>załaduj zdjecie</FormLabel>
             <>
-            {/* <Input type="file" multiple accept="image/*" onChange={onImageChange}></Input>
-            {imageUrls.map(imageSrc => <img src={imageSrc}/> )} */}
+            <Input type="file" accept="image/*" onChange={onImageChange}></Input>
+            <img src={imageUrls}/> 
             </>
            <Stack direction="row" spacing={2}>
             <Button colorScheme='blue' onClick={handleSubmit} >Dodaj post</Button>

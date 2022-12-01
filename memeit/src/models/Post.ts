@@ -4,7 +4,7 @@ import { User } from "./User";
 export interface Post{
     author?: User;
     title: string;
-    votes?: number;
+    votes: number;
     fileImage?: FileImage;
     
 }
